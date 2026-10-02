@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Analytics Dashboard | PrivacyGuard</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="navbar">
+    <a href="/" class="brand">
+      <span class="brand-shield">🛡️</span>
+      <span>PrivacyGuard <small style="font-size:0.75rem; color:var(--accent-cyan); font-weight:400;">Framework</small></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/">Overview</a></li>
+      <li><a href="/assessment">Assessment</a></li>
+      <li><a href="/dashboard" class="active">Dashboard</a></li>
+      <li><a href="/simulator">Simulator</a></li>
+      <li><a href="/checklist">Checklist</a></li>
+      <li><a href="/metadata">EXIF Inspector</a></li>
+      <li><a href="/assessment" class="nav-cta">Start Assessment</a></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+
+    <!-- Dashboard Header -->
+    <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem;">
+      <div>
+        <div class="badge-pill">📊 Enterprise & Population Risk Analytics</div>
+        <h1 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 0.25rem;">Cybersecurity Privacy Dashboard</h1>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">
+          Aggregated risk metrics, systemic vulnerability distributions, and security control adoption benchmarks.
+        </p>
+      </div>
+      <div>
+        <a href="/assessment" class="btn btn-primary">Start New Assessment →</a>
+      </div>
+    </header>
+
+    <!-- Top Summary Cards (Section 22) -->
+    <section class="grid grid-cols-4" style="margin-bottom: 2rem;">
+      <div class="stat-box">
+        <div class="stat-label">Total Analyzed Records</div>
+        <div id="stat-total-count" class="stat-value" style="color: var(--accent-cyan);">--</div>
+        <small style="color: var(--text-muted);">Synthetic + Local records</small>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-label">Population Average Risk</div>
+        <div id="stat-avg-score" class="stat-value" style="color: var(--risk-high);">--</div>
+        <div id="stat-risk-badge" class="risk-badge risk-high" style="margin-top: 0.25rem;">HIGH EXPOSURE</div>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-label">Highest Exposure Domain</div>
+        <div id="stat-top-cat" class="stat-value" style="font-size: 1.4rem; color: var(--risk-critical); margin: 0.75rem 0;">Third-Party Apps</div>
+        <small style="color: var(--text-muted);">65/100 Average Risk</small>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-label">MFA Adoption Rate</div>
+        <div id="stat-mfa-rate" class="stat-value" style="color: var(--risk-low);">--%</div>
+        <small style="color: var(--text-muted);">Defensive 2FA Enabled</small>
+      </div>
+    </section>
+
+    <!-- Charts Row 1: Radar (10 Categories) & Risk Distribution (Doughnut) -->
+    <section class="grid grid-cols-2" style="margin-bottom: 2rem;">
+      <!-- Chart 1: 10 Privacy Categories Profile Radar -->
+      <div class="card">
+        <h3 class="card-title">🎯 10-Category Privacy Risk Radar</h3>
+        <p class="card-subtitle">Category scores normalized from 0 (Safe) to 100 (Maximum Exposure).</p>
+        <div style="height: 340px; position: relative;">
+          <canvas id="categoryRadarChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Chart 2: Population Risk Distribution -->
+      <div class="card">
+        <h3 class="card-title">📈 Population Risk Tier Distribution</h3>
+        <p class="card-subtitle">Distribution across Low (0-20), Moderate (21-40), High (41-70), and Critical (71-100).</p>
+        <div style="height: 340px; position: relative;">
+          <canvas id="riskDistributionChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- Charts Row 2: Top Weaknesses & Security Controls -->
+    <section class="grid grid-cols-2" style="margin-bottom: 2rem;">
+      <!-- Chart 3: Top Systemic Weaknesses -->
+      <div class="card">
+        <h3 class="card-title">⚠️ Top Privacy Weaknesses & Vulnerabilities</h3>
+        <p class="card-subtitle">Prevalence percentage of self-reported privacy misconfigurations.</p>
+        <div style="height: 320px; position: relative;">
+          <canvas id="topWeaknessesChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Chart 4: Security Controls Adoption -->
+      <div class="card">
+        <h3 class="card-title">🛡️ Defensive Security Controls Adoption</h3>
+        <p class="card-subtitle">Implementation rate of key account defense and hygiene mechanisms.</p>
+        <div style="height: 320px; position: relative;">
+          <canvas id="controlsAdoptionChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recent Assessments Table -->
+    <section class="card">
+      <h3 class="card-title">🕒 Recent Assessments (Privacy-Preserved Audit Log)</h3>
+      <p class="card-subtitle">Demonstrates data minimization: only assessment IDs, scores, and risk levels are retained.</p>
+      
+      <div style="overflow-x: auto;">
+        <table class="styled-table">
+          <thead>
+            <tr>
+              <th>Assessment ID</th>
+              <th>Platform</th>
+              <th>Input Source</th>
+              <th>Risk Score</th>
+              <th>Risk Tier</th>
+              <th>Conducted At</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="recent-assessments-body">
+            <tr><td colspan="7" style="text-align: center; color: var(--text-muted);">Loading recent assessments...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>Social Media Privacy Risk Assessment Framework • Defensive Cybersecurity Course Project</p>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>

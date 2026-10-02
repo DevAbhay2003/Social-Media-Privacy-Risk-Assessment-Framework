@@ -1,0 +1,17 @@
+{
+  "platform": "instagram",
+  "username": "morgan_security_mindset",
+  "display_name": "Morgan S.",
+  "bio": "Tech enthusiast & photography hobbyist. Opinions are my own.",
+  "website": "",
+  "email": null,
+  "phone": null,
+  "location": "California, US",
+  "privacy": {
+    "account_private": true,
+    "show_activity": false,
+    "allow_message_requests": false,
+    "search_engine_indexing": false
+  },
+  "links": []
+}

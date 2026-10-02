@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Safe Photo EXIF Metadata Inspector | PrivacyGuard</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="navbar">
+    <a href="/" class="brand">
+      <span class="brand-shield">🛡️</span>
+      <span>PrivacyGuard <small style="font-size:0.75rem; color:var(--accent-cyan); font-weight:400;">Framework</small></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/">Overview</a></li>
+      <li><a href="/assessment">Assessment</a></li>
+      <li><a href="/dashboard">Dashboard</a></li>
+      <li><a href="/simulator">Simulator</a></li>
+      <li><a href="/checklist">Checklist</a></li>
+      <li><a href="/metadata" class="active">EXIF Inspector</a></li>
+      <li><a href="/assessment" class="nav-cta">Start Assessment</a></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+
+    <header style="margin-bottom: 2rem;">
+      <div class="badge-pill">📸 In-Memory Media Privacy Analysis</div>
+      <h1 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 0.5rem;">Photo & EXIF Metadata Inspector</h1>
+      <p style="color: var(--text-muted); max-width: 750px;">
+        Examine how photographs leak physical coordinates, camera hardware serials, and timestamps.
+        <strong>Committed to Privacy by Design:</strong> Images are processed 100% in-memory locally. 
+        Zero photos or GPS coordinates are ever written to disk or sent to external services.
+      </p>
+    </header>
+
+    <!-- Upload Box & Educational Guide -->
+    <section class="grid grid-cols-2" style="margin-bottom: 2.5rem; gap: 2rem;">
+
+      <!-- File Drop Area -->
+      <div class="card">
+        <h2 class="card-title">🔍 Inspect Image EXIF Data</h2>
+        <p class="card-subtitle">Select a local JPEG image to audit embedded metadata tags.</p>
+
+        <div id="drop-zone" style="border: 2px dashed var(--border-color); border-radius: var(--radius-md); padding: 2.5rem 1.5rem; text-align: center; cursor: pointer; transition: all 0.2s ease; background: var(--bg-tertiary);">
+          <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🖼️</div>
+          <div style="font-weight: 600; margin-bottom: 0.25rem;">Choose an image or drag & drop here</div>
+          <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">Supports JPEG/JPG formats (max 20MB)</div>
+          <input type="file" id="file-input" accept="image/jpeg,image/jpg" style="display: none;">
+          <button type="button" class="btn btn-secondary" onclick="document.getElementById('file-input').click()">
+            Browse Local File
+          </button>
+        </div>
+
+        <div style="margin-top: 1rem; text-align: center;">
+          <button id="btn-create-demo-exif" class="btn btn-outline" style="font-size: 0.82rem;">
+            ⚡ Generate Demo Image with Embedded GPS
+          </button>
+        </div>
+      </div>
+
+      <!-- Conceptual Educational Awareness Guide -->
+      <div class="card" style="border-left: 4px solid var(--accent-cyan);">
+        <h3 class="card-title" style="color: var(--accent-cyan);">💡 What Can Photos Unintentionally Leak?</h3>
+        <p class="card-subtitle">Visual context and binary metadata hazards in modern photography.</p>
+        
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.65rem; font-size: 0.88rem; color: var(--text-muted);">
+          <li>📍 <strong>Exact Geolocation:</strong> Cameras and phones embed precise latitude and longitude coordinates into the EXIF header.</li>
+          <li>🕒 <strong>Temporal Patterns:</strong> Timestamps reveal exact routines, arrival times, and unoccupied home intervals.</li>
+          <li>🏢 <strong>Physical Badges & Lanyards:</strong> Access cards in work selfies enable barcode replication and badge cloning.</li>
+          <li>🖥️ <strong>Computer Monitors & Desks:</strong> Background screens often expose internal Slack channels, dashboards, and credentials.</li>
+          <li>🚗 <strong>Vehicles & House Numbers:</strong> Street signs and license plates permit automated address geolocation via Street View.</li>
+        </ul>
+      </div>
+
+    </section>
+
+    <!-- Inspection Results Container -->
+    <section id="results-container" class="card" style="display: none; margin-bottom: 2rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h3 class="card-title">📋 Metadata Audit Results</h3>
+          <p id="res-filename" class="card-subtitle" style="margin: 0; font-family: monospace;"></p>
+        </div>
+
+        <div style="display: flex; gap: 0.75rem; align-items: center;">
+          <span id="res-risk-badge" class="risk-badge">--</span>
+          <button id="btn-strip-download" class="btn btn-primary" style="font-size: 0.85rem;">
+            🛡️ Strip EXIF & Download Clean Image
+          </button>
+        </div>
+      </div>
+
+      <!-- Detected Hazards -->
+      <div id="res-hazards-box" style="margin-bottom: 1.5rem;">
+        <!-- Rendered via JS -->
+      </div>
+
+      <!-- Tag Details Table -->
+      <div style="overflow-x: auto;">
+        <table class="styled-table">
+          <thead>
+            <tr>
+              <th>EXIF Property</th>
+              <th>Extracted Value</th>
+              <th>Privacy Risk Assessment</th>
+            </tr>
+          </thead>
+          <tbody id="res-tags-body">
+            <!-- Rendered via JS -->
+          </tbody>
+        </table>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>Social Media Privacy Risk Assessment Framework • Defensive Cybersecurity Course Project</p>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/metadata.js"></script>
+</body>
+</html>

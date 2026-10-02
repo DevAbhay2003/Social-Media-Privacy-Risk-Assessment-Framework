@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Social Media Privacy Checklist | PrivacyGuard</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="navbar no-print">
+    <a href="/" class="brand">
+      <span class="brand-shield">🛡️</span>
+      <span>PrivacyGuard <small style="font-size:0.75rem; color:var(--accent-cyan); font-weight:400;">Framework</small></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/">Overview</a></li>
+      <li><a href="/assessment">Assessment</a></li>
+      <li><a href="/dashboard">Dashboard</a></li>
+      <li><a href="/simulator">Simulator</a></li>
+      <li><a href="/checklist" class="active">Checklist</a></li>
+      <li><a href="/metadata">EXIF Inspector</a></li>
+      <li><button onclick="window.print()" class="btn btn-primary" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">🖨️ Print Checklist</button></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+
+    <header style="margin-bottom: 2rem;">
+      <div class="badge-pill">☑️ Defensive Privacy Hygiene</div>
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h1 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 0.5rem;">Social Media Privacy Checklist</h1>
+          <p style="color: var(--text-muted); max-width: 680px;">
+            A printable, step-by-step security and privacy checklist to harden personal profiles against OSINT surveillance, credential theft, and social engineering.
+          </p>
+        </div>
+        <div class="no-print">
+          <button onclick="window.print()" class="btn btn-secondary">
+            🖨️ Download / Print PDF
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Checklist Progress Bar -->
+    <div class="card no-print" style="margin-bottom: 2rem; padding: 1.25rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+        <span style="font-weight: 600; font-size: 0.95rem;">Checklist Completion Progress</span>
+        <span id="checklist-progress-text" style="font-weight: 700; color: var(--accent-cyan);">0% Completed</span>
+      </div>
+      <div class="risk-meter-bar">
+        <div id="checklist-progress-bar" class="risk-meter-fill" style="width: 0%; background: var(--risk-low);"></div>
+      </div>
+    </div>
+
+    <!-- Grouped Checklist Containers -->
+    <div id="checklist-items-container">
+      <!-- Rendered via JS -->
+    </div>
+
+  </main>
+
+  <footer class="footer no-print">
+    <p>Social Media Privacy Risk Assessment Framework • Defensive Cybersecurity Course Project</p>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/checklist.js"></script>
+</body>
+</html>

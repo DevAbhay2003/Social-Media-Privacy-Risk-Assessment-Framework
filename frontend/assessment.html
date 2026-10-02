@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Assessment Questionnaire | PrivacyGuard</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="navbar">
+    <a href="/" class="brand">
+      <span class="brand-shield">🛡️</span>
+      <span>PrivacyGuard <small style="font-size:0.75rem; color:var(--accent-cyan); font-weight:400;">Framework</small></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/">Overview</a></li>
+      <li><a href="/assessment" class="active">Assessment</a></li>
+      <li><a href="/dashboard">Dashboard</a></li>
+      <li><a href="/simulator">Simulator</a></li>
+      <li><a href="/checklist">Checklist</a></li>
+      <li><a href="/metadata">EXIF Inspector</a></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+
+    <!-- Assessment Header -->
+    <header style="margin-bottom: 2rem;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <div class="badge-pill">📋 Self-Reported Privacy Hygiene Assessment</div>
+          <h1 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 0.5rem;">Privacy Risk Questionnaire</h1>
+          <p style="color: var(--text-muted); max-width: 650px;">
+            Answer questions regarding your social media configuration and behavioral habits. 
+            <strong>No phone numbers, passwords, or personal identifying information are collected.</strong>
+          </p>
+        </div>
+
+        <!-- Quick Demo Profiles -->
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+          <button id="btn-load-high-risk" class="btn btn-danger" style="font-size: 0.85rem;">
+            ⚠️ Load High Exposure Demo
+          </button>
+          <button id="btn-load-safe" class="btn btn-secondary" style="font-size: 0.85rem;">
+            ✅ Load Defensive Demo
+          </button>
+        </div>
+      </div>
+
+      <!-- Mode Switcher Tabs -->
+      <div style="display: flex; gap: 1rem; margin-top: 1.5rem; border-bottom: 1px solid var(--border-color);">
+        <button id="tab-mode-questions" class="cat-tab active">Interactive 44-Question Assessment</button>
+        <button id="tab-mode-json" class="cat-tab">JSON Profile & Posts Ingestion Mode</button>
+      </div>
+    </header>
+
+    <!-- MODE 1: Interactive Questionnaire Container -->
+    <div id="section-questionnaire">
+      <!-- Category Tabs Bar -->
+      <div id="category-tabs" class="category-tab-bar">
+        <!-- Rendered dynamically via JavaScript -->
+      </div>
+
+      <!-- Category Description Card -->
+      <div id="category-intro" class="card" style="margin-bottom: 1.5rem; padding: 1rem 1.5rem; background: rgba(99, 102, 241, 0.08); border-color: rgba(99, 102, 241, 0.25);">
+        <h3 id="current-cat-name" style="font-size: 1.1rem; color: var(--accent-cyan); margin-bottom: 0.25rem;">Category</h3>
+        <p id="current-cat-desc" style="font-size: 0.88rem; color: var(--text-muted); margin: 0;"></p>
+      </div>
+
+      <!-- Questions List for Active Category -->
+      <form id="assessment-form">
+        <div id="questions-container">
+          <!-- Rendered dynamically via JS -->
+          <div style="text-align: center; padding: 2rem; color: var(--text-muted);">Loading questionnaire items...</div>
+        </div>
+
+        <!-- Questionnaire Stepper Navigation & Submission -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border-color);">
+          <button type="button" id="btn-prev-cat" class="btn btn-secondary" style="visibility: hidden;">
+            ← Previous Category
+          </button>
+
+          <div id="progress-indicator" style="color: var(--text-muted); font-size: 0.9rem; font-weight: 600;">
+            Category 1 of 10
+          </div>
+
+          <div style="display: flex; gap: 0.75rem;">
+            <button type="button" id="btn-next-cat" class="btn btn-primary">
+              Next Category →
+            </button>
+            <button type="submit" id="btn-submit-assessment" class="btn btn-primary" style="display: none; background: linear-gradient(135deg, var(--risk-low), var(--accent-cyan));">
+              🛡️ Submit & Generate Privacy Report
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- MODE 2: JSON Profile & Posts Ingestion Container -->
+    <div id="section-json-mode" style="display: none;">
+      <div class="card" style="margin-bottom: 1.5rem;">
+        <h2 class="card-title">📁 Synthetic Profile & Posts Ingestion</h2>
+        <p class="card-subtitle">
+          Evaluate synthetic or voluntarily exported profile metadata and post records according to the project schema.
+        </p>
+
+        <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+          <button id="btn-load-sample-high" class="btn btn-secondary" style="font-size: 0.85rem;">
+            Load Sample: High Risk Profile
+          </button>
+          <button id="btn-load-sample-safe" class="btn btn-secondary" style="font-size: 0.85rem;">
+            Load Sample: Hardened Profile
+          </button>
+        </div>
+
+        <div class="grid grid-cols-2" style="margin-bottom: 1.5rem;">
+          <div>
+            <label style="display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem;">
+              profile.json (Metadata & Privacy Settings)
+            </label>
+            <textarea id="json-profile-input" rows="14" style="width: 100%; font-family: monospace; font-size: 0.82rem; padding: 0.75rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: #e2e8f0;"></textarea>
+          </div>
+          <div>
+            <label style="display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem;">
+              posts.json (Post Corpus & Media Flags)
+            </label>
+            <textarea id="json-posts-input" rows="14" style="width: 100%; font-family: monospace; font-size: 0.82rem; padding: 0.75rem; background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: #e2e8f0;"></textarea>
+          </div>
+        </div>
+
+        <button id="btn-submit-json" class="btn btn-primary">
+          Analyze JSON Footprint →
+        </button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Social Media Privacy Risk Assessment Framework • Defensive Educational Project</p>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/assessment.js"></script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Social Media Privacy Risk Assessment Framework</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <!-- Chart.js CDN for visualizations -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="navbar">
+    <a href="/" class="brand">
+      <span class="brand-shield">🛡️</span>
+      <span>PrivacyGuard <small style="font-size:0.75rem; color:var(--accent-cyan); font-weight:400;">Framework</small></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/" class="active">Overview</a></li>
+      <li><a href="/assessment">Assessment</a></li>
+      <li><a href="/dashboard">Dashboard</a></li>
+      <li><a href="/simulator">Simulator</a></li>
+      <li><a href="/checklist">Checklist</a></li>
+      <li><a href="/metadata">EXIF Inspector</a></li>
+      <li><a href="/assessment" class="nav-cta">Start Assessment</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="container">
+
+    <!-- Hero Section -->
+    <header class="hero">
+      <div class="badge-pill">🛡️ Defensive Cybersecurity & Privacy by Design</div>
+      <h1>Social Media Privacy Risk<br>Assessment Framework</h1>
+      <p>
+        An industry-oriented cybersecurity framework evaluating social-media exposure, 
+        digital footprints, account-security hygiene, and social-engineering risk without scraping, 
+        profiling, or harvesting personal data.
+      </p>
+      <div class="hero-actions">
+        <a href="/assessment" class="btn btn-primary">Start 44-Question Assessment →</a>
+        <a href="/dashboard" class="btn btn-secondary">View Analytics Dashboard 📊</a>
+        <a href="/simulator" class="btn btn-outline">Privacy Improvement Simulator ⚡</a>
+      </div>
+    </header>
+
+    <!-- Key Metrics Banner -->
+    <section class="grid grid-cols-4" style="margin-bottom: 2.5rem;">
+      <div class="stat-box">
+        <div class="stat-label">Evaluated Categories</div>
+        <div class="stat-value" style="color: var(--accent-cyan);">10</div>
+        <small style="color: var(--text-muted);">Defense-in-depth domains</small>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Privacy Questions</div>
+        <div class="stat-value" style="color: var(--accent-indigo);">44</div>
+        <small style="color: var(--text-muted);">Zero sensitive PII collected</small>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Risk Scoring Scale</div>
+        <div class="stat-value" style="color: var(--risk-moderate);">0–100</div>
+        <small style="color: var(--text-muted);">Higher = higher exposure</small>
+      </div>
+      <div class="stat-box">
+        <div class="stat-label">Privacy Guarantee</div>
+        <div class="stat-value" style="color: var(--risk-low);">100%</div>
+        <small style="color: var(--text-muted);">In-memory / Minimized storage</small>
+      </div>
+    </section>
+
+    <!-- Fundamental Cybersecurity Concepts: Simple vs Technical -->
+    <section class="card" style="margin-bottom: 2.5rem;">
+      <h2 class="card-title">🔐 Core Cybersecurity & Privacy Fundamentals</h2>
+      <p class="card-subtitle">Mastering the conceptual distinctions between account security and information privacy.</p>
+
+      <div class="grid grid-cols-2" style="margin-top: 1.25rem;">
+        <!-- Privacy vs Security -->
+        <div style="background: var(--bg-secondary); padding: 1.25rem; border-radius: var(--radius-md); border-left: 4px solid var(--accent-cyan);">
+          <h3 style="color: var(--accent-cyan); margin-bottom: 0.5rem;">Privacy vs. Security</h3>
+          <p style="font-size: 0.92rem; margin-bottom: 0.75rem;">
+            <strong>Privacy:</strong> Controls how personal information is collected, exposed, shared, and utilized.<br>
+            <strong>Security:</strong> Protects systems, accounts, and credentials from unauthorized access or compromise.
+          </p>
+          <div style="background: rgba(0,0,0,0.3); padding: 0.75rem; border-radius: 4px; font-size: 0.85rem; color: #cbd5e1;">
+            💡 <em>Key Insight:</em> A user may have a 30-character random password and a FIDO2 hardware key (<strong>Strong Security</strong>), but still post their direct phone number, birth date, and live GPS check-ins publicly (<strong>Weak Privacy</strong>).
+            <strong>Strong Account Security ≠ Strong Privacy.</strong>
+          </div>
+        </div>
+
+        <!-- Digital Footprint & Oversharing -->
+        <div style="background: var(--bg-secondary); padding: 1.25rem; border-radius: var(--radius-md); border-left: 4px solid var(--accent-indigo);">
+          <h3 style="color: var(--accent-indigo); margin-bottom: 0.5rem;">Digital Footprint & Oversharing</h3>
+          <p style="font-size: 0.92rem; margin-bottom: 0.75rem;">
+            <strong>Active Footprint:</strong> Information deliberately broadcasted (posts, photos, tagged relations, resumes).<br>
+            <strong>Passive Footprint:</strong> Interaction trails and metadata harvested by platforms and aggregators.
+          </p>
+          <div style="background: rgba(0,0,0,0.3); padding: 0.75rem; border-radius: 4px; font-size: 0.85rem; color: #cbd5e1;">
+            🎯 <em>Social Engineering Link:</em> Threat actors aggregate open-source intelligence (OSINT) from public posts (employer, college, vacation schedules) to craft highly convincing pretexting lures, spear-phishing emails, or emergency impersonation scams.
+          </div>
+        </div>
+      </div>
+
+      <!-- Conceptual Deep Dive Accordion / Grid -->
+      <div class="grid grid-cols-3" style="margin-top: 1.5rem; gap: 1rem;">
+        <div style="background: var(--bg-tertiary); padding: 1rem; border-radius: var(--radius-sm);">
+          <h4 style="color: var(--risk-moderate); font-size: 0.95rem; margin-bottom: 0.4rem;">📍 Location Exposure</h4>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">
+            Real-time check-ins and geotagging alert adversaries to unoccupied residences, daily commute routes, and physical habits.
+          </p>
+        </div>
+        <div style="background: var(--bg-tertiary); padding: 1rem; border-radius: var(--radius-sm);">
+          <h4 style="color: var(--risk-moderate); font-size: 0.95rem; margin-bottom: 0.4rem;">📜 Historical Posts</h4>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">
+            Old posts from past years often contain abandoned email addresses, maiden names, or context exploited for security question bypass.
+          </p>
+        </div>
+        <div style="background: var(--bg-tertiary); padding: 1rem; border-radius: var(--radius-sm);">
+          <h4 style="color: var(--risk-moderate); font-size: 0.95rem; margin-bottom: 0.4rem;">🔑 MFA & Account Defense</h4>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">
+            Multi-Factor Authentication stops up to 99% of automated credential stuffing. App-based TOTP or hardware keys protect private messages.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Architecture & Workflow Pipeline -->
+    <section class="card" style="margin-bottom: 2.5rem;">
+      <h2 class="card-title">⚙️ Defensive Framework Architecture & Pipeline</h2>
+      <p class="card-subtitle">How user inputs flow through validation, feature extraction, scoring, and remediation.</p>
+
+      <div style="background: var(--bg-secondary); padding: 1.5rem; border-radius: var(--radius-md); overflow-x: auto;">
+        <div style="display: flex; align-items: center; justify-content: space-between; min-width: 800px; text-align: center; gap: 0.5rem;">
+          <div style="flex: 1; padding: 0.75rem; background: var(--bg-tertiary); border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+            <div style="font-size: 1.2rem;">👤</div>
+            <strong style="font-size: 0.85rem;">User / Inputs</strong>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Self-Reported / Demo</div>
+          </div>
+          <div style="color: var(--accent-cyan); font-weight: bold;">➔</div>
+          <div style="flex: 1; padding: 0.75rem; background: var(--bg-tertiary); border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+            <div style="font-size: 1.2rem;">📋</div>
+            <strong style="font-size: 0.85rem;">44-Q Questionnaire</strong>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">10 Categories</div>
+          </div>
+          <div style="color: var(--accent-cyan); font-weight: bold;">➔</div>
+          <div style="flex: 1; padding: 0.75rem; background: var(--bg-tertiary); border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+            <div style="font-size: 1.2rem;">🛡️</div>
+            <strong style="font-size: 0.85rem;">Input Validation</strong>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Zero PII Storage</div>
+          </div>
+          <div style="color: var(--accent-cyan); font-weight: bold;">➔</div>
+          <div style="flex: 1; padding: 0.75rem; background: var(--bg-tertiary); border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+            <div style="font-size: 1.2rem;">⚖️</div>
+            <strong style="font-size: 0.85rem;">Risk Engine</strong>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Category Scoring (0-100)</div>
+          </div>
+          <div style="color: var(--accent-cyan); font-weight: bold;">➔</div>
+          <div style="flex: 1; padding: 0.75rem; background: var(--bg-tertiary); border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+            <div style="font-size: 1.2rem;">📊</div>
+            <strong style="font-size: 0.85rem;">Dashboard & Report</strong>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Prioritized Remediation</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Industry Relevance & Career Alignments -->
+    <section class="card" style="margin-bottom: 2.5rem;">
+      <h2 class="card-title">💼 Cybersecurity Career Relevance</h2>
+      <p class="card-subtitle">How this project demonstrates competencies for premier cybersecurity, privacy, and GRC roles.</p>
+
+      <div class="grid grid-cols-3" style="gap: 1.25rem;">
+        <div style="background: var(--bg-secondary); padding: 1.25rem; border-radius: var(--radius-md);">
+          <h3 style="color: var(--accent-cyan); font-size: 1.05rem; margin-bottom: 0.4rem;">Cybersecurity / SOC Analyst</h3>
+          <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 0.5rem;">
+            Recognizes spear-phishing attack vectors, credential stuffing exposure, and initial access techniques rooted in OSINT reconnaissance.
+          </p>
+          <span class="badge-pill" style="margin: 0; font-size: 0.7rem;">Threat Modeling • OSINT</span>
+        </div>
+        <div style="background: var(--bg-secondary); padding: 1.25rem; border-radius: var(--radius-md);">
+          <h3 style="color: var(--accent-indigo); font-size: 1.05rem; margin-bottom: 0.4rem;">Privacy Analyst / Engineer</h3>
+          <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 0.5rem;">
+            Implements Data Minimization, Purpose Limitation, and GDPR/CCPA Privacy by Design principles within technical workflows.
+          </p>
+          <span class="badge-pill" style="margin: 0; font-size: 0.7rem;">Data Minimization • Privacy by Design</span>
+        </div>
+        <div style="background: var(--bg-secondary); padding: 1.25rem; border-radius: var(--radius-md);">
+          <h3 style="color: #a78bfa; font-size: 1.05rem; margin-bottom: 0.4rem;">GRC & Security Awareness</h3>
+          <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 0.5rem;">
+            Develops actionable coaching curricula, human-centric security metrics, and employee digital footprint reduction checklists.
+          </p>
+          <span class="badge-pill" style="margin: 0; font-size: 0.7rem;">Awareness Training • Risk Rubrics</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ethical Disclaimer Card -->
+    <section class="card" style="border-color: rgba(99, 102, 241, 0.4); background: rgba(99, 102, 241, 0.05);">
+      <h3 style="color: #a5b4fc; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+        <span>⚖️</span> Ethical Cybersecurity Notice & Privacy Commitment
+      </h3>
+      <p style="font-size: 0.9rem; color: var(--text-muted);">
+        This platform is engineered exclusively for <strong>defensive cybersecurity education</strong> and digital privacy hygiene awareness.
+        It evaluates user-reported privacy configurations and synthetic behavioral data. <strong>It does not scrape real social media accounts, does not collect passwords or telephone numbers, does not bypass privacy walls, and does not profile or track real individuals.</strong>
+      </p>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="/assessment">Start Assessment</a>
+      <a href="/dashboard">Analytics Dashboard</a>
+      <a href="/simulator">Improvement Simulator</a>
+      <a href="/checklist">Privacy Checklist</a>
+      <a href="/metadata">EXIF Inspector</a>
+      <a href="https://github.com" target="_blank" rel="noopener">GitHub Project</a>
+    </div>
+    <p>Social Media Privacy Risk Assessment Framework • Defensive Cybersecurity Course Project</p>
+    <p style="color: var(--text-dark); margin-top: 0.25rem;">Built with Privacy by Design • Zero Raw PII Storage • MIT License</p>
+  </footer>
+
+</body>
+</html>

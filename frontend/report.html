@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Risk Assessment Report | PrivacyGuard</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- Top Navigation (hidden during print) -->
+  <nav class="navbar no-print">
+    <a href="/" class="brand">
+      <span class="brand-shield">🛡️</span>
+      <span>PrivacyGuard <small style="font-size:0.75rem; color:var(--accent-cyan); font-weight:400;">Framework</small></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/">Overview</a></li>
+      <li><a href="/assessment">Assessment</a></li>
+      <li><a href="/dashboard">Dashboard</a></li>
+      <li><a href="/simulator">Simulator</a></li>
+      <li><a href="/checklist">Checklist</a></li>
+      <li><a href="/metadata">EXIF Inspector</a></li>
+      <li><button onclick="window.print()" class="btn btn-primary" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">🖨️ Export PDF / Print</button></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+
+    <!-- Report Header & Actions -->
+    <header style="margin-bottom: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1.5rem;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <div class="badge-pill">📄 Cybersecurity Privacy Audit Report</div>
+          <h1 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 0.25rem;">Privacy Risk Evaluation Report</h1>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">
+            Formal defensive privacy evaluation, exposure audit, and prioritized security remediation roadmap.
+          </p>
+        </div>
+
+        <div class="no-print" style="display: flex; gap: 0.75rem; align-items: center;">
+          <button onclick="window.print()" class="btn btn-secondary">
+            🖨️ Print / Save as PDF
+          </button>
+          <button id="btn-delete-report" class="btn btn-danger" title="Permanently delete this record (GDPR Art. 17)">
+            🗑️ Delete Record
+          </button>
+        </div>
+      </div>
+
+      <!-- Report Metadata Strip -->
+      <div class="grid grid-cols-4" style="margin-top: 1.5rem; gap: 1rem; background: var(--bg-secondary); padding: 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+        <div>
+          <small style="color: var(--text-muted); text-transform: uppercase; font-size: 0.75rem; font-weight: 600;">Assessment ID</small>
+          <div id="rep-id" style="font-family: monospace; font-weight: 700; color: var(--accent-cyan);">--</div>
+        </div>
+        <div>
+          <small style="color: var(--text-muted); text-transform: uppercase; font-size: 0.75rem; font-weight: 600;">Evaluation Date</small>
+          <div id="rep-date" style="font-weight: 600;">--</div>
+        </div>
+        <div>
+          <small style="color: var(--text-muted); text-transform: uppercase; font-size: 0.75rem; font-weight: 600;">Evaluated Platform</small>
+          <div id="rep-platform" style="font-weight: 600;">Cross-Platform</div>
+        </div>
+        <div>
+          <small style="color: var(--text-muted); text-transform: uppercase; font-size: 0.75rem; font-weight: 600;">Storage Compliance</small>
+          <div style="color: var(--risk-low); font-weight: 600;">Data Minimized (Zero PII)</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Overall Risk Gauge & High Level Summary -->
+    <section class="grid grid-cols-2" style="margin-bottom: 2rem;">
+      <!-- Overall Risk Card -->
+      <div class="card" style="text-align: center; display: flex; flex-direction: column; justify-content: center;">
+        <div class="stat-label">Assessed Privacy Risk Score</div>
+        <div id="rep-score" class="stat-value" style="font-size: 3.8rem; margin: 0.5rem 0;">--</div>
+        <div>
+          <span id="rep-badge" class="risk-badge">-- RISK</span>
+        </div>
+        <div class="risk-meter-container" style="max-width: 320px; margin: 1.25rem auto 0.5rem; width: 100%;">
+          <div class="risk-meter-bar">
+            <div id="rep-meter-fill" class="risk-meter-fill" style="width: 0%;"></div>
+          </div>
+        </div>
+        <small style="color: var(--text-muted);">Scale: 0 (Minimal Exposure) to 100 (Critical Risk)</small>
+      </div>
+
+      <!-- Category Risk Summary Chart -->
+      <div class="card">
+        <h3 class="card-title">📊 Category Risk Breakdown</h3>
+        <p class="card-subtitle">Risk scores normalized across all evaluated domains.</p>
+        <div style="height: 220px; position: relative;">
+          <canvas id="reportCategoryBarChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- Category Scores Table -->
+    <section class="card" style="margin-bottom: 2rem;">
+      <h3 class="card-title">📑 Evaluated Domain Scores & Weights</h3>
+      <div style="overflow-x: auto;">
+        <table class="styled-table">
+          <thead>
+            <tr>
+              <th>Domain Code</th>
+              <th>Category Name</th>
+              <th>Assessed Score (0-100)</th>
+              <th>Weight</th>
+              <th>Risk Tier</th>
+            </tr>
+          </thead>
+          <tbody id="rep-cat-table-body">
+            <!-- Rendered via JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Top Identified Privacy Weaknesses -->
+    <section class="card" style="margin-bottom: 2rem;">
+      <h3 class="card-title">⚠️ Identified Privacy Weaknesses</h3>
+      <p class="card-subtitle">Specific configuration gaps and behavioral oversharing vulnerabilities detected.</p>
+      <div id="rep-findings-list">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- Prioritized Remediation Roadmap -->
+    <section class="card" style="margin-bottom: 2rem;">
+      <h3 class="card-title">🛡️ Prioritized Security & Privacy Remediation</h3>
+      <p class="card-subtitle">Actionable step-by-step guidance ordered by defensive priority.</p>
+      <div id="rep-recommendations-list">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- Recommended Privacy Checklist -->
+    <section class="card" style="margin-bottom: 2rem;">
+      <h3 class="card-title">☑️ Recommended Defensive Action Checklist</h3>
+      <div id="rep-checklist-container">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- Formal Legal & Educational Disclaimer -->
+    <section class="card" style="border-left: 4px solid var(--accent-indigo); background: rgba(99, 102, 241, 0.05);">
+      <h4 style="color: #a5b4fc; margin-bottom: 0.4rem;">⚖️ Framework Assessment Disclaimer</h4>
+      <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5;">
+        This Privacy Risk Assessment Report is prepared exclusively for educational self-assessment and defensive privacy awareness. 
+        Calculated scores and priority tiers represent rubric assumptions based upon user-provided configuration answers. 
+        This report does not guarantee immunity from targeted cyberattacks, physical intrusions, or third-party platform data breaches. 
+        In compliance with Data Minimization and Privacy by Design, this system stores no telephone numbers, passwords, real identities, or geolocation coordinates.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="footer no-print">
+    <p>Social Media Privacy Risk Assessment Framework • Defensive Cybersecurity Course Project</p>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/report.js"></script>
+</body>
+</html>

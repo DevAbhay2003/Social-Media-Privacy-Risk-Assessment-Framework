@@ -1,0 +1,21 @@
+{
+  "platform": "instagram",
+  "username": "alex.oversharer",
+  "display_name": "Alex Mercer",
+  "bio": "Senior Dev @ FinTech Corp • Runner • Proud dad of 2 • Reach me at alex.mercer.dev@example.com",
+  "website": "https://myportfolio.com/alex",
+  "email": "alex.mercer.dev@example.com",
+  "phone": "+1 415 555 0199",
+  "location": "San Francisco, CA",
+  "privacy": {
+    "account_private": false,
+    "show_activity": true,
+    "allow_message_requests": true,
+    "search_engine_indexing": true
+  },
+  "links": [
+    "https://linktr.ee/alexmercer",
+    "https://github.com/alexmercer",
+    "https://pastebin.com/u/alexm"
+  ]
+}
