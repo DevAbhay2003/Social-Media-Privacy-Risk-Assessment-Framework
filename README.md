@@ -427,6 +427,8 @@ This software is developed strictly for educational and defensive cybersecurity 
 ---
 
 ## Author
-- Developed as a **Cybersecurity Capstone Course Project** by a dedicated cybersecurity student and aspiring privacy engineer.  
-- **Abhishek Basu — Embedded Systems Student GitHub: [DevAbhay2003](https://github.com/DevAbhay2003?tab=repositories) · LinkedIn: [Abhishek Basu](https://www.linkedin.com/in/abhishek-basu-68b1b1342/)**
+- **Project Lead**: **Abhishek Basu**
+- **GitHub**: [DevAbhay2003](https://github.com/DevAbhay2003?tab=repositories)
+- **LinkedIn**: [https://linkedin.com/in/your-profile](https://www.linkedin.com/in/abhishek-basu-68b1b1342/)
+- **Email**: devabhishekbasu03@gmail.com
 *Feedback, contributions, and defensive security discussions are warmly welcomed.*
